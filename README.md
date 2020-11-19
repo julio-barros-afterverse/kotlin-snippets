@@ -2,7 +2,7 @@
 
 ## Actors
 ### Deadlock
-Rendezvous actors will deadlock here:
+Rendezvous (capacity 0) actors will deadlock here:
 ```kotlin
 suspend fun main() {
   var g: suspend () -> Unit = {}
