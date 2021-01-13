@@ -91,3 +91,60 @@ outputs
 sent 1
 sent 2
 ```
+
+
+Algorithms
+```
+fun main() {
+  CrazyRunGeneratorService.allPermutationsOf(listOf(true, true, false, false, false))
+    .map { println(it) }
+}
+
+object CrazyRunGeneratorService {
+
+  private var crazyRunDebugTrack = 0
+
+  fun allPermutationsOf(list: List<Boolean>): List<List<Boolean>> {
+    val result = mutableListOf<List<Boolean>>()
+    var v = 0b00000
+    var current = 0b00001
+    list
+      .sortedDescending()
+      .forEachIndexed { index, b ->
+        if (b) {
+          v = v or current
+        }
+        current *= 2
+    }
+    var w = v;
+
+    var currentString = w.toString(2)
+
+    while (currentString.length <= list.size) {
+      result.add(currentString.padStart(list.size, '0').map { it == '1' })
+      val t = (v or (v - 1)) + 1
+      w = t or ((((t and -t) / (v and -v)) /2) - 1)
+      v = w;
+      // w is next lexicographically
+      currentString = w.toString(2)
+
+    }
+
+    return result;
+  }
+}
+```
+
+outputs
+```
+[false, false, false, true, true]
+[false, false, true, false, true]
+[false, false, true, true, false]
+[false, true, false, false, true]
+[false, true, false, true, false]
+[false, true, true, false, false]
+[true, false, false, false, true]
+[true, false, false, true, false]
+[true, false, true, false, false]
+[true, true, false, false, false]
+```
