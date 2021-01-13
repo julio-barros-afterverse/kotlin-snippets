@@ -93,8 +93,9 @@ sent 2
 ```
 
 
-Algorithms
-```
+# Algorithms
+## All permutations of bool array
+```kotlin
 fun main() {
   CrazyRunGeneratorService.allPermutationsOf(listOf(true, true, false, false, false))
     .map { println(it) }
