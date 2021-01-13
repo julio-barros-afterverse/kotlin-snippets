@@ -97,11 +97,11 @@ sent 2
 ## All permutations of bool array
 ```kotlin
 fun main() {
-  CrazyRunGeneratorService.allPermutationsOf(listOf(true, true, false, false, false))
+  Algo.allPermutationsOf(listOf(true, true, false, false, false))
     .map { println(it) }
 }
 
-object CrazyRunGeneratorService {
+object Algo {
 
   private var crazyRunDebugTrack = 0
 
